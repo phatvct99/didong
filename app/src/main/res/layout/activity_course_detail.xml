@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="230dp">
+
+                <ImageView
+                    android:id="@+id/courseDetail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/image_slider_2"
+                    android:scaleType="centerCrop"
+                    />
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AA000000">
+
+                    <TextView
+                        android:id="@+id/courseDetail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:paddingTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Title"
+                        android:textColor="@color/white"
+                        android:textSize="40dp" />
+
+                    <TextView
+                        android:id="@+id/courseDetail_goal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:fontFamily="@font/roboto"
+                        android:text="Goal"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <TextView
+                        android:id="@+id/courseDetail_ranking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:fontFamily="@font/roboto"
+                        android:paddingTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="Ranking"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/courseDetail_create_at"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_row="2"
+                        android:layout_column="1"
+                        android:fontFamily="@font/roboto"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="5dp"
+                        android:text="Update"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                </GridLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/courseDetail_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="200.000VND"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="30sp"
+                    android:gravity="center_horizontal|top"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="220.000 đ"
+                    android:id="@+id/top_cousers_discount"
+                    android:textSize="15dp"
+                    android:textColor="#792727"
+                    android:gravity="center_horizontal|top"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/courseDetail_joinBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:background="#FF4016"
+                    android:text="Join now"
+                    android:textSize="16dp"
+                    android:textColor="#fff"
+                    />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/courseDetail_commentBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rectangle_corner_whitebg"
+                    android:text="Feedback"
+                    android:textSize="16dp"
+                    android:textColor="@color/main_blue"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:background="@drawable/rectangle_corner_whitebg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Description"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="#8A000000"
+                    android:gravity="center_horizontal|top"
+                    />
+
+                <TextView
+                    android:id="@+id/courseDetail_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/description_demo"
+                    android:textSize="17sp"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#000000"
+                    android:gravity="left"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:background="@drawable/rectangle_corner_whitebg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Related Course"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:gravity="center_horizontal|top"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/courseDetail_related_coursesRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:background="@drawable/rectangle_corner_whitebg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Feedback of student"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:gravity="center_horizontal|top"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/courseDetail_commentRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -1,0 +1,684 @@
+Index: app/src/main/res/layout/activity_home_screen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n    <androidx.appcompat.widget.Toolbar\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:background=\"@color/main_blue\"\r\n        android:id=\"@+id/homeTB\"\r\n\r\n        >\r\n        <androidx.appcompat.widget.SearchView\r\n\r\n            android:id=\"@+id/searchView\"\r\n            android:layout_width=\"match_parent\"\r\n\r\n            android:layout_marginRight=\"5dp\"\r\n            android:layout_height=\"40dp\"\r\n            app:iconifiedByDefault=\"false\"\r\n            android:queryHint=\"Search\"\r\n            android:layout_centerHorizontal=\"true\"\r\n            android:layout_gravity=\"center_horizontal\"\r\n            app:queryHint=\"Search courses here\"\r\n\r\n            android:backgroundTint=\"@color/white\"\r\n            android:background=\"@drawable/homescreen_seach_view_border\"\r\n            />\r\n        <Spinner\r\n            android:id=\"@+id/spinner1\"\r\n            android:layout_width=\"30dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_gravity=\"start\"\r\n\r\n\r\n            style=\"@style/SpinnerTheme\"\r\n\r\n            />\r\n\r\n    </androidx.appcompat.widget.Toolbar>\r\n\r\n    <FrameLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:layout_below=\"@+id/homeTB\"\r\n        android:layout_above=\"@id/bottomNav\"\r\n        android:id=\"@+id/container\"\r\n        >\r\n\r\n    </FrameLayout>\r\n\r\n    <com.google.android.material.bottomnavigation.BottomNavigationView\r\n        android:id=\"@+id/bottomNav\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:background=\"#f5f6fa\"\r\n        android:backgroundTint=\"#f5f6fa\"\r\n        app:itemHorizontalTranslationEnabled=\"false\"\r\n        app:itemIconSize=\"23dp\"\r\n        app:itemIconTint=\"@drawable/homescreen_nav_icon_color_state\"\r\n        app:itemTextColor=\"@drawable/homescreen_nav_icon_color_state\"\r\n        app:labelVisibilityMode=\"labeled\"\r\n        app:menu=\"@menu/homescreen_menu\"\r\n\r\n\r\n        />\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_home_screen.xml	(revision ee82aa560d8cc294dfb15ae3fc27d403222bb62c)
++++ app/src/main/res/layout/activity_home_screen.xml	(date 1605108996832)
+@@ -15,7 +15,6 @@
+ 
+             android:id="@+id/searchView"
+             android:layout_width="match_parent"
+-
+             android:layout_marginRight="5dp"
+             android:layout_height="40dp"
+             app:iconifiedByDefault="false"
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Project-wide Gradle settings.\r\n# IDE (e.g. Android Studio) users:\r\n# Gradle settings configured through the IDE *will override*\r\n# any settings specified in this file.\r\n# For more details on how to configure your build environment visit\r\n# http://www.gradle.org/docs/current/userguide/build_environment.html\r\n# Specifies the JVM arguments used for the daemon process.\r\n# The setting is particularly useful for tweaking memory settings.\r\norg.gradle.jvmargs=-Xmx2048m\r\n# When configured, Gradle will run in incubating parallel mode.\r\n# This option should only be used with decoupled projects. More details, visit\r\n# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects\r\n# org.gradle.parallel=true\r\n# AndroidX package structure to make it clearer which packages are bundled with the\r\n# Android operating system, and which are packaged with your app\"s APK\r\n# https://developer.android.com/topic/libraries/support-library/androidx-rn\r\nandroid.useAndroidX=true\r\n# Automatically convert third-party libraries to use AndroidX\r\nandroid.enableJetifier=true
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- gradle.properties	(revision ee82aa560d8cc294dfb15ae3fc27d403222bb62c)
++++ gradle.properties	(date 1605109598321)
+@@ -6,7 +6,7 @@
+ # http://www.gradle.org/docs/current/userguide/build_environment.html
+ # Specifies the JVM arguments used for the daemon process.
+ # The setting is particularly useful for tweaking memory settings.
+-org.gradle.jvmargs=-Xmx2048m
++org.gradle.jvmargs=-Xmx4096m
+ # When configured, Gradle will run in incubating parallel mode.
+ # This option should only be used with decoupled projects. More details, visit
+ # http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+Index: app/src/main/java/Retrofit/IMyService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Retrofit;\r\n\r\nimport io.reactivex.Observable;\r\nimport okhttp3.MultipartBody;\r\nimport retrofit2.Response;\r\nimport retrofit2.http.Field;\r\nimport retrofit2.http.FormUrlEncoded;\r\nimport retrofit2.http.GET;\r\nimport retrofit2.http.Header;\r\nimport retrofit2.http.Multipart;\r\nimport retrofit2.http.POST;\r\nimport retrofit2.http.PUT;\r\nimport retrofit2.http.Part;\r\n\r\npublic interface IMyService {\r\n\r\n    //Login Activity\r\n    @POST(\"login\")\r\n    @FormUrlEncoded\r\n    Observable<Response<String>> loginUser(@Field(\"email\") String email, @Field(\"password\") String actToken);\r\n\r\n    //Register Activity\r\n    @POST(\"register\")\r\n    @FormUrlEncoded\r\n    Observable<Response<String>> registerUser(@Field(\"name\") String name,\r\n                                              @Field(\"email\") String email,\r\n                                              @Field(\"password\") String password,\r\n                                              @Field(\"phone\") String phone,\r\n                                              @Field(\"address\") String address,\r\n                                              @Field(\"description\") String descript,\r\n                                              @Field(\"gender\") String gender);\r\n\r\n    //Active Account Activity\r\n    @POST(\"active-account\")\r\n    @FormUrlEncoded\r\n    Observable<String>  activeAccUser(@Field(\"email\") String email,\r\n                                      @Field(\"activeToken\") String actToken);\r\n\r\n    //UserInfo Activity\r\n    @PUT(\"change-profile\")\r\n    @FormUrlEncoded\r\n    Observable<Response<String>>  changeProfile(@Field(\"name\") String oldPass,\r\n                                                @Field(\"phone\") String phone,\r\n                                                @Field(\"address\") String address,\r\n                                                @Field(\"description\") String description,\r\n                                                @Field(\"gender\") String gender,\r\n                                                @Header(\"auth-token\") String authToken);\r\n\r\n    //UserAvatar Activity\r\n    @Multipart\r\n    @PUT(\"change-avatar\")\r\n    Observable<Response<String>>  changeAva(@Part MultipartBody.Part file,\r\n                                            @Header(\"auth-token\") String authToken);\r\n\r\n    //UserPasswordChange Activity\r\n    @PUT(\"change-password\")\r\n    @FormUrlEncoded\r\n    Observable<Response<String>>  changePass(@Field(\"oldpassword\") String oldPass,\r\n                                             @Field(\"newpassword\") String newPass,\r\n                                             @Header(\"auth-token\") String authToken);\r\n\r\n    //Account Fragment\r\n    @GET(\"logout\")\r\n    Observable<String>  userLogout(@Header(\"auth-token\") String authToken);\r\n\r\n    //FeatureFragment - Week 3\r\n    @GET(\"category/get-all-category\")\r\n    Observable<String>  getAllCategory();\r\n    @GET(\"course/get-all\")\r\n    Observable<String>  getAllCourse();\r\n    @GET(\"course/get-free\")\r\n    Observable<String>  getFreeCourse();\r\n    @GET(\"course/get-top\")\r\n    Observable<String>  getTopCourse();\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/Retrofit/IMyService.java	(revision ee82aa560d8cc294dfb15ae3fc27d403222bb62c)
++++ app/src/main/java/Retrofit/IMyService.java	(date 1605112480283)
+@@ -2,7 +2,9 @@
+ 
+ import io.reactivex.Observable;
+ import okhttp3.MultipartBody;
++import okhttp3.RequestBody;
+ import retrofit2.Response;
++import retrofit2.http.Body;
+ import retrofit2.http.Field;
+ import retrofit2.http.FormUrlEncoded;
+ import retrofit2.http.GET;
+@@ -11,6 +13,8 @@
+ import retrofit2.http.POST;
+ import retrofit2.http.PUT;
+ import retrofit2.http.Part;
++import retrofit2.http.Query;
++import retrofit2.http.Url;
+ 
+ public interface IMyService {
+ 
+@@ -73,5 +77,26 @@
+     @GET("course/get-top")
+     Observable<String>  getTopCourse();
+ 
++    //TODO SearchFragment
++    @GET("course/getby-category")
++    Observable<String>  getCourseByCategory(@Url String urlGet);
+ 
++    @GET
++    Observable<String> getSearchCourse(@Url String urlSearch);
++
++    //TODO CoursesActivity
++        //todo comment
++    @GET
++    Observable<String>  getListComment(@Url String urlGet);
++        //todo join course
++    @POST("join/create-join")
++    @FormUrlEncoded
++    Observable<Response<String>>  joinCourse( @Field("idUser") String name,
++                                              @Field("idCourse") String goal);
++        //todo rating
++    @POST("rate/create-rate")
++    Observable<String>  postRating(@Body RequestBody body);
++        //todo get joined
++    @GET
++    Observable<String>  getJoinedCourse(@Url String urlGet);
+ }
+Index: app/src/main/res/layout/fragment_search.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_search.xml	(date 1605112596524)
++++ app/src/main/res/layout/fragment_search.xml	(date 1605112596524)
+@@ -0,0 +1,64 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/scrollViewSearch"
++    android:layout_width="fill_parent"
++    android:layout_height="fill_parent"
++    android:fillViewport="true" >
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:orientation="vertical"
++
++        tools:context=".Fragment.searchFragment">
++
++        <!-- TODO: Update blank fragment layout -->
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Keywords"
++            android:textSize="22dp"
++            android:layout_marginTop="20dp"
++            android:layout_marginLeft="15dp"
++            android:textColor="#242323"
++            android:fontFamily="sans-serif-medium"
++            android:id="@+id/keyword_text"
++            />
++        <androidx.recyclerview.widget.RecyclerView
++            android:layout_marginTop="10dp"
++            android:id="@+id/search_keyword_recyclerView"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginLeft="15dp"
++            />
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Category"
++            android:textSize="22dp"
++            android:layout_marginTop="20dp"
++            android:layout_marginLeft="15dp"
++            android:textColor="#242323"
++            android:fontFamily="sans-serif-medium"
++            android:id="@+id/category_text"
++            />
++        <androidx.recyclerview.widget.RecyclerView
++            android:layout_marginTop="10dp"
++            android:id="@+id/search_category_recyclerView"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginLeft="15dp"
++            />
++
++        <androidx.recyclerview.widget.RecyclerView
++            android:layout_marginTop="10dp"
++            android:id="@+id/search_items_recyclerView"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginLeft="15dp"
++            />
++
++    </LinearLayout>
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <!-- Default screen margins, per the Android Design guidelines. -->\r\n    <dimen name=\"activity_horizontal_margin\">16dp</dimen>\r\n    <dimen name=\"activity_vertical_margin\">16dp</dimen>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(revision ee82aa560d8cc294dfb15ae3fc27d403222bb62c)
++++ app/src/main/res/values/dimens.xml	(date 1605068692295)
+@@ -2,4 +2,5 @@
+     <!-- Default screen margins, per the Android Design guidelines. -->
+     <dimen name="activity_horizontal_margin">16dp</dimen>
+     <dimen name="activity_vertical_margin">16dp</dimen>
++    <dimen name="text_margin">16dp</dimen>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/Fragment/SearchFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/Fragment/SearchFragment.java	(date 1605148217383)
++++ app/src/main/java/Fragment/SearchFragment.java	(date 1605148217383)
+@@ -0,0 +1,277 @@
++package Fragment;
++
++import android.app.AlertDialog;
++import android.content.Context;
++import android.os.Build;
++import android.os.Bundle;
++
++import androidx.annotation.Nullable;
++import androidx.annotation.RequiresApi;
++import androidx.appcompat.widget.SearchView;
++import androidx.appcompat.widget.Toolbar;
++import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.GridLayoutManager;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++import androidx.recyclerview.widget.RecyclerView.Adapter;
++
++import android.os.Handler;
++import android.util.Log;
++import android.view.LayoutInflater;
++import android.view.MenuItem;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.LinearLayout;
++import android.widget.Toast;
++
++import com.denzcoskun.imageslider.ImageSlider;
++import com.denzcoskun.imageslider.models.SlideModel;
++import com.example.tutorial_v1.R;
++
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import Adapter.categoryRVAdapter;
++import Adapter.topCourseAdapter;
++import Model.category_item;
++import Model.courseItem;
++import dmax.dialog.SpotsDialog;
++import es.dmoral.toasty.Toasty;
++import io.reactivex.Observer;
++import io.reactivex.Scheduler;
++import io.reactivex.android.schedulers.AndroidSchedulers;
++import io.reactivex.annotations.NonNull;
++import io.reactivex.disposables.Disposable;
++import io.reactivex.schedulers.Schedulers;
++import retrofit2.Retrofit;
++
++import Retrofit.*;
++import retrofit2.http.Url;
++
++public class SearchFragment extends Fragment {
++    SearchView searchView;
++    RecyclerView search_courses_recyclerView;
++    ArrayList<courseItem> courseItems = new ArrayList<>();
++    topCourseAdapter topCourseAdapter;
++
++    RecyclerView search_category_recyclerView;
++    ArrayList<category_item> categoryItems = new ArrayList<>();
++    categoryRVAdapter categoryAdapter;
++
++    public SearchFragment (){}
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        // Inflate the layout for this fragment
++        final View rootView= inflater.inflate(R.layout.fragment_search, container, false);
++
++        searchView = getActivity().findViewById(R.id.searchView);
++        search_courses_recyclerView = rootView.findViewById(R.id.search_items_recyclerView);
++        search_courses_recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
++        topCourseAdapter = new topCourseAdapter(getContext(), courseItems);
++        search_courses_recyclerView.setAdapter(topCourseAdapter);
++
++        search_category_recyclerView = rootView.findViewById(R.id.search_category_recyclerView);
++        search_category_recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
++        categoryAdapter = new categoryRVAdapter(getContext(), categoryItems);
++        search_category_recyclerView.setAdapter(categoryAdapter);
++        LoadAllCategory();
++
++        //TODO - Listener for searchView
++        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
++            @Override
++            public boolean onQueryTextSubmit( String query) {
++                if (query.isEmpty())
++                    return false;
++
++                rootView.findViewById(R.id.search_category_recyclerView).setVisibility(View.GONE);
++                rootView.findViewById(R.id.search_keyword_recyclerView).setVisibility(View.GONE);
++                rootView.findViewById(R.id.keyword_text).setVisibility(View.GONE);
++                rootView.findViewById(R.id.category_text).setVisibility(View.GONE);
++                rootView.findViewById(R.id.search_items_recyclerView).setVisibility(View.VISIBLE);
++                QueryTextSubmit(query);
++                return true;
++            }
++
++            @Override
++            public boolean onQueryTextChange(String newText) {
++                if (newText.isEmpty()){
++                    rootView.findViewById(R.id.search_category_recyclerView).setVisibility(View.VISIBLE);
++                    rootView.findViewById(R.id.search_keyword_recyclerView).setVisibility(View.VISIBLE);
++                    rootView.findViewById(R.id.keyword_text).setVisibility(View.VISIBLE);
++                    rootView.findViewById(R.id.category_text).setVisibility(View.VISIBLE);
++                    rootView.findViewById(R.id.search_items_recyclerView).setVisibility(View.GONE);
++                    courseItems.clear();
++
++                    return true;
++                }
++
++                return false;
++            }
++        });
++
++        return rootView;
++    }
++
++    boolean flag = false;
++    private void QueryTextSubmit(String query) {
++        String urlStr = "/course/search-course/";
++
++        IMyService iMyService;
++        AlertDialog alertDialog;
++        Retrofit retrofitClient= RetrofitClient.getInstance();
++        iMyService=retrofitClient.create(IMyService.class);
++        alertDialog= new SpotsDialog.Builder().setContext(getContext()).build();
++        alertDialog.show();
++        iMyService.getSearchCourse(urlStr+query).
++                subscribeOn(Schedulers.io())
++                .observeOn(AndroidSchedulers.mainThread())
++                .subscribe(new Observer<String>() {
++                    @Override
++                    public void onSubscribe( Disposable d) {
++
++                    }
++
++                    @Override
++                    public void onNext( String s) {
++                        if(s.contains("vote"))
++                        {
++                            try {
++                                JSONArray parent = new JSONArray(s);
++
++                                for(int i=0; i<parent.length(); i++){
++                                    JSONObject jo = parent.getJSONObject(i);
++                                    JSONObject jo2 = jo.getJSONObject("vote");
++
++                                    courseItem citem = new courseItem();
++                                    citem.setTitle(jo.getString("name"));
++                                    citem.setTotalVote(jo2.getInt("totalVote"));
++                                    citem.setUrl(jo.getString("image"));
++                                    citem.setRating(jo.getInt("ranking"));
++                                    citem.setFee(jo.getString("price"));
++                                    citem.setDiscount(jo.getInt("discount"));
++                                    citem.setID(jo.getString("_id"));
++                                    Log.v("name", citem.getTitle());
++                                    courseItems.add(citem);
++                                    topCourseAdapter.notifyDataSetChanged();
++                                }
++                                flag = true;
++                            } catch (JSONException e) {
++                                e.printStackTrace();
++                            }
++                        }
++                        else
++                            flag = false;
++                    }
++
++                    @Override
++                    public void onError( Throwable e) {
++                        new Handler().postDelayed(
++                                new Runnable() {
++                                    public void run() {
++                                        alertDialog.dismiss();
++                                    }
++                                }, 500);
++                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
++                    }
++
++                    @Override
++                    public void onComplete() {
++                        new Handler().postDelayed(
++                                new Runnable() {
++                                    public void run() {
++                                        alertDialog.dismiss();
++
++                                    }
++                                }, 500);
++                        if (flag == true){
++                            Toasty.success(getContext(), "Success", Toast.LENGTH_SHORT).show();
++                        }
++                    }
++                });
++    }
++
++    boolean flag_category = false;
++    private void LoadAllCategory() {
++
++        IMyService iMyService;
++        AlertDialog alertDialog;
++        Retrofit retrofitClient= RetrofitClient.getInstance();
++        iMyService=retrofitClient.create(IMyService.class);
++        alertDialog= new SpotsDialog.Builder().setContext(getContext()).build();
++        alertDialog.show();
++        iMyService.getAllCategory().
++                subscribeOn(Schedulers.io())
++                .observeOn(AndroidSchedulers.mainThread())
++                .subscribe(new Observer<String>(){
++                    @Override
++                    public void onSubscribe( Disposable d) {
++
++                    }
++
++                    @Override
++                    public void onNext( String s) {
++                        if (s.contains("_id"))
++                        {
++                            try {
++                                JSONArray parent = new JSONArray(s);
++
++                                for (int i = 0; i < parent.length(); i++){
++                                    JSONObject jo = parent.getJSONObject(i);
++                                    category_item citem = new category_item(jo.getString("name"),
++                                            jo.getString("_id"),
++                                            jo.getString("image"));
++                                    categoryItems.add(citem);
++                                    categoryAdapter.notifyDataSetChanged();
++                                }
++                                flag_category = true;
++
++                            } catch (JSONException e) {
++                                e.printStackTrace();
++                            }
++                        }else {
++                            flag_category = false;
++                        }
++                    }
++
++                    @Override
++                    public void onError( Throwable e) {
++                        new Handler().postDelayed(
++                                new Runnable() {
++                                    public void run() {
++                                        alertDialog.dismiss();
++                                    }
++                                }, 500);
++                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
++                    }
++
++                    @Override
++                    public void onComplete() {
++                        new Handler().postDelayed(
++                                new Runnable() {
++                                    public void run() {
++                                        alertDialog.dismiss();
++
++                                    }
++                                }, 500);
++                        if (flag_category == true){
++                            Toasty.success(getContext(), "Success", Toast.LENGTH_SHORT).show();
++                        }
++                        else {
++                            Toasty.success(getContext(), "Fail to upload Category", Toast.LENGTH_SHORT).show();
++                        }
++                    };
++                });
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/java/Fragment/FeatureFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Fragment;\r\n\r\nimport android.app.AlertDialog;\r\nimport android.content.Context;\r\nimport android.os.Build;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.RequiresApi;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.GridLayoutManager;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.os.Handler;\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.Toast;\r\n\r\nimport com.denzcoskun.imageslider.ImageSlider;\r\nimport com.denzcoskun.imageslider.models.SlideModel;\r\nimport com.example.tutorial_v1.R;\r\n\r\nimport org.json.JSONArray;\r\nimport org.json.JSONException;\r\nimport org.json.JSONObject;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport Adapter.categoryRVAdapter;\r\nimport Adapter.topCourseAdapter;\r\nimport Model.category_item;\r\nimport Model.courseItem;\r\nimport dmax.dialog.SpotsDialog;\r\nimport es.dmoral.toasty.Toasty;\r\nimport io.reactivex.Observer;\r\nimport io.reactivex.android.schedulers.AndroidSchedulers;\r\nimport io.reactivex.annotations.NonNull;\r\nimport io.reactivex.disposables.Disposable;\r\nimport io.reactivex.schedulers.Schedulers;\r\nimport retrofit2.Retrofit;\r\n\r\nimport Retrofit.*;\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link FeatureFragment# newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class FeatureFragment extends Fragment {\r\n\r\n    //Instance for ImageSlider\r\n    ImageSlider imageSlider;\r\n    ArrayList<SlideModel> imageList = new ArrayList<>();\r\n\r\n    //Instances for Course - Lastest (moi nhat), Free (mien phi), Best (Tot nhat)\r\n    RecyclerView recyclerView1,recyclerView2,recyclerView3;\r\n    ArrayList<courseItem> courseItems = new ArrayList<>();\r\n    ArrayList<courseItem> courseItems2 = new ArrayList<>();\r\n    ArrayList<courseItem> courseItems3 = new ArrayList<>();\r\n    Adapter.topCourseAdapter topCourseAdapter,topCourseAdapter2,topCourseAdapter3;\r\n\r\n    //Instance for category\r\n    ArrayList<category_item> items = new ArrayList<>();\r\n    categoryRVAdapter adapter;\r\n    RecyclerView recyclerView;\r\n\r\n\r\n    public FeatureFragment() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        final View rootView= inflater.inflate(R.layout.fragment_feature, container, false);\r\n\r\n        // TODO - Image slider\r\n        {\r\n            imageSlider = rootView.findViewById(R.id.image_slider);\r\n\r\n            imageList.add(new SlideModel(R.drawable.image_slider_1, \"BB iz da bezt\"));\r\n            imageList.add(new SlideModel(R.drawable.image_slider_2, \"Skadi iz my waifu\"));\r\n            imageList.add(new SlideModel(R.drawable.image_slider_3, \"Hello World!\"));\r\n\r\n            imageSlider.setImageList(imageList, true);\r\n        }\r\n        //TODO - Categories\r\n        {\r\n            //LOAD CATEGORY\r\n            recyclerView = rootView.findViewById(R.id.category_recyclerView);\r\n            recyclerView.setHasFixedSize(true);\r\n\r\n            LoadAllCategory();\r\n\r\n            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));\r\n            adapter = new categoryRVAdapter(getContext(), items);\r\n            recyclerView.setAdapter(adapter);\r\n        }\r\n\r\n        //TODO - New courses\r\n        {\r\n            recyclerView1 = rootView.findViewById(R.id.top_course1_recyclerView);\r\n            recyclerView1.setHasFixedSize(true);\r\n\r\n            LoadNewCourses();\r\n\r\n            recyclerView1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));\r\n            topCourseAdapter = new topCourseAdapter(getContext(), courseItems);\r\n            recyclerView1.setAdapter(topCourseAdapter);\r\n        }\r\n        //TODO - freecourse\r\n        {\r\n            recyclerView2 = rootView.findViewById(R.id.top_course1_recyclerView1);\r\n            recyclerView2.setHasFixedSize(true);\r\n\r\n            LoadFreeCourses();\r\n\r\n            recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));\r\n            topCourseAdapter2 = new topCourseAdapter(getContext(), courseItems2);\r\n            recyclerView2.setAdapter(topCourseAdapter2);\r\n        }\r\n        //TODO - top course\r\n        {\r\n            recyclerView3 = rootView.findViewById(R.id.top_course1_recyclerView2);\r\n            recyclerView3.setHasFixedSize(true);\r\n\r\n            LoadTopCourse();\r\n\r\n            recyclerView3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));\r\n            topCourseAdapter3 = new topCourseAdapter(getContext(), courseItems3);\r\n            recyclerView3.setAdapter(topCourseAdapter3);\r\n        }\r\n        return  rootView;\r\n    }\r\n\r\n\r\n    private void LoadFreeCourses() {\r\n\r\n        IMyService iMyService;\r\n        AlertDialog alertDialog;\r\n        Retrofit retrofitClient= RetrofitClient.getInstance();\r\n        iMyService=retrofitClient.create(IMyService.class);\r\n        alertDialog= new SpotsDialog.Builder().setContext(getContext()).build();\r\n        alertDialog.show();\r\n        iMyService.getFreeCourse().\r\n                subscribeOn(Schedulers.io())\r\n                .observeOn(AndroidSchedulers.mainThread())\r\n                .subscribe(new Observer<String>(){\r\n                    @Override\r\n                    public void onSubscribe(@NonNull Disposable d) {\r\n\r\n                    }\r\n\r\n                    @Override\r\n                    public void onNext(@NonNull String s) {\r\n                        if(s.contains(\"vote\"))\r\n                        {\r\n                            try {\r\n                                JSONArray parent = new JSONArray(s);\r\n\r\n                                for(int i=0; i<parent.length(); i++){\r\n                                    JSONObject jo = parent.getJSONObject(i);\r\n                                    JSONObject jo2 = jo.getJSONObject(\"vote\");\r\n\r\n                                    courseItem citem = new courseItem();\r\n                                    citem.setTitle(jo.getString(\"name\"));\r\n                                    citem.setTotalVote(jo2.getInt(\"totalVote\"));\r\n                                    citem.setUrl(jo.getString(\"image\"));\r\n                                    citem.setRating(jo.getInt(\"ranking\"));\r\n                                    citem.setFee(jo.getString(\"price\"));\r\n                                    citem.setDiscount(jo.getInt(\"discount\"));\r\n                                    citem.setID(jo.getString(\"_id\"));\r\n                                    Log.v(\"name\", citem.getTitle());\r\n                                    courseItems2.add(citem);\r\n                                }\r\n                                flag = true;\r\n                            } catch (JSONException e) {\r\n                                e.printStackTrace();\r\n                            }\r\n                        }\r\n                    }\r\n\r\n                    @Override\r\n                    public void onError(@NonNull Throwable e) {\r\n                        new Handler().postDelayed(\r\n                                new Runnable() {\r\n                                    public void run() {\r\n                                        alertDialog.dismiss();\r\n                                    }\r\n                                }, 500);\r\n                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();\r\n                    }\r\n\r\n                    @Override\r\n                    public void onComplete() {\r\n                        new Handler().postDelayed(\r\n                                new Runnable() {\r\n                                    public void run() {\r\n                                        alertDialog.dismiss();\r\n\r\n                                    }\r\n                                }, 500);\r\n                        if (flag == true){\r\n                            Toasty.success(getContext(), \"Success1\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    }\r\n                });\r\n    }\r\n    boolean flag=false;\r\n    boolean flag2=false;\r\n    boolean flag3=false;\r\n    private void LoadNewCourses() {\r\n\r\n\r\n        IMyService iMyService;\r\n        AlertDialog alertDialog;\r\n        Retrofit retrofitClient= RetrofitClient.getInstance();\r\n        iMyService=retrofitClient.create(IMyService.class);\r\n        alertDialog= new SpotsDialog.Builder().setContext(getContext()).build();\r\n        alertDialog.show();\r\n        iMyService.getAllCourse().\r\n                subscribeOn(Schedulers.io())\r\n                .observeOn(AndroidSchedulers.mainThread())\r\n                .subscribe(new Observer<String>(){\r\n                    @Override\r\n                    public void onSubscribe(Disposable d) {}\r\n\r\n                    @Override\r\n                    public void onNext(@NonNull String s) {\r\n                        if(s.contains(\"vote\"))\r\n                        {\r\n                            try {\r\n                                JSONArray parent = new JSONArray(s);\r\n\r\n                                for(int i=0; i<parent.length(); i++){\r\n                                    JSONObject jo = parent.getJSONObject(i);\r\n                                    JSONObject jo2 = jo.getJSONObject(\"vote\");\r\n\r\n                                    courseItem citem = new courseItem();\r\n                                    citem.setTitle(jo.getString(\"name\"));\r\n                                    citem.setTotalVote(jo2.getInt(\"totalVote\"));\r\n                                    citem.setUrl(jo.getString(\"image\"));\r\n                                    citem.setRating(jo.getInt(\"ranking\"));\r\n                                    citem.setFee(jo.getString(\"price\"));\r\n                                    citem.setDiscount(jo.getInt(\"discount\"));\r\n                                    citem.setID(jo.getString(\"_id\"));\r\n                                    Log.v(\"name\", citem.getTitle());\r\n                                    courseItems.add(citem);\r\n                                }\r\n                                flag2 = true;\r\n                            } catch (JSONException e) {\r\n                                e.printStackTrace();\r\n                            }\r\n                        }\r\n                    }\r\n\r\n                    @Override\r\n                    public void onError(@NonNull Throwable e) {\r\n                        new Handler().postDelayed(\r\n                                new Runnable() {\r\n                                    public void run() {\r\n                                        alertDialog.dismiss();\r\n                                    }\r\n                                }, 500);\r\n                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();\r\n                    }\r\n\r\n                    @Override\r\n                    public void onComplete() {\r\n                        new Handler().postDelayed(\r\n                                new Runnable() {\r\n                                    public void run() {\r\n                                        alertDialog.dismiss();\r\n\r\n                                    }\r\n                                }, 500);\r\n                        if(flag2 == true){\r\n                            Toasty.success(getContext(), \"Success2\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    }\r\n\r\n\r\n                });\r\n    }\r\n\r\n    private void LoadTopCourse() {\r\n\r\n            IMyService iMyService;\r\n            AlertDialog alertDialog;\r\n            Retrofit retrofitClient = RetrofitClient.getInstance();\r\n            iMyService = retrofitClient.create(IMyService.class);\r\n            alertDialog = new SpotsDialog.Builder().setContext(getContext()).build();\r\n            alertDialog.show();\r\n            iMyService.getTopCourse().\r\n                    subscribeOn(Schedulers.io())\r\n                    .observeOn(AndroidSchedulers.mainThread())\r\n                    .subscribe(new Observer<String>() {\r\n                        @Override\r\n                        public void onSubscribe(@NonNull Disposable d) {\r\n\r\n                        }\r\n\r\n                        @Override\r\n                        public void onNext(@NonNull String s) {\r\n                            if(s.contains(\"vote\"))\r\n                            {\r\n                                try {\r\n                                    JSONArray parent = new JSONArray(s);\r\n\r\n                                    for(int i=0; i<parent.length(); i++){\r\n                                        JSONObject jo = parent.getJSONObject(i);\r\n                                        JSONObject jo2 = jo.getJSONObject(\"vote\");\r\n\r\n                                        courseItem citem = new courseItem();\r\n                                        citem.setTitle(jo.getString(\"name\"));\r\n                                        citem.setTotalVote(jo2.getInt(\"totalVote\"));\r\n                                        citem.setUrl(jo.getString(\"image\"));\r\n                                        citem.setRating(jo.getInt(\"ranking\"));\r\n                                        citem.setFee(jo.getString(\"price\"));\r\n                                        citem.setDiscount(jo.getInt(\"discount\"));\r\n                                        citem.setID(jo.getString(\"_id\"));\r\n                                        Log.v(\"name\", citem.getTitle());\r\n                                        courseItems3.add(citem);\r\n                                    }\r\n                                    flag3 = true;\r\n                                } catch (JSONException e) {\r\n                                    e.printStackTrace();\r\n                                }\r\n                            }\r\n                        }\r\n\r\n                        @Override\r\n                        public void onError(@NonNull Throwable e) {\r\n                            new Handler().postDelayed(\r\n                                    new Runnable() {\r\n                                        public void run() {\r\n                                            alertDialog.dismiss();\r\n                                        }\r\n                                    }, 500);\r\n                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();\r\n                        }\r\n\r\n                        @Override\r\n                        public void onComplete() {\r\n                            new Handler().postDelayed(\r\n                                    new Runnable() {\r\n                                        public void run() {\r\n                                            alertDialog.dismiss();\r\n\r\n                                        }\r\n                                    }, 500);\r\n                            if (flag3 == true){\r\n                                Toasty.success(getContext(), \"Success3\", Toast.LENGTH_SHORT).show();\r\n                            }\r\n                        }\r\n                    });\r\n    }\r\n\r\n    boolean flag_category=false;\r\n    private void LoadAllCategory() {\r\n\r\n        IMyService iMyService;\r\n        AlertDialog alertDialog;\r\n        Retrofit retrofitClient= RetrofitClient.getInstance();\r\n        iMyService=retrofitClient.create(IMyService.class);\r\n        alertDialog= new SpotsDialog.Builder().setContext(getContext()).build();\r\n        alertDialog.show();\r\n        iMyService.getAllCategory().\r\n                subscribeOn(Schedulers.io())\r\n                .observeOn(AndroidSchedulers.mainThread())\r\n                .subscribe(new Observer<String>(){\r\n                    @Override\r\n                    public void onSubscribe( Disposable d) {\r\n\r\n                    }\r\n\r\n                    @Override\r\n                    public void onNext( String s) {\r\n                        if (s.contains(\"_id\"))\r\n                        {\r\n                            try {\r\n                                JSONArray parent = new JSONArray(s);\r\n\r\n                                for (int i = 0; i < parent.length(); i++){\r\n                                    JSONObject jo = parent.getJSONObject(i);\r\n                                    category_item citem = new category_item(jo.getString(\"name\"),\r\n                                                                            jo.getString(\"_id\"),\r\n                                                                            jo.getString(\"image\"));\r\n                                    items.add(citem);\r\n                                }\r\n                                flag_category = true;\r\n\r\n                            } catch (JSONException e) {\r\n                                e.printStackTrace();\r\n                            }\r\n                        }else {\r\n                            flag_category = false;\r\n                        }\r\n                    }\r\n\r\n                    @Override\r\n                    public void onError( Throwable e) {\r\n                        new Handler().postDelayed(\r\n                                new Runnable() {\r\n                                    public void run() {\r\n                                        alertDialog.dismiss();\r\n                                    }\r\n                                }, 500);\r\n                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();\r\n                    }\r\n\r\n                    @Override\r\n                    public void onComplete() {\r\n                        new Handler().postDelayed(\r\n                                new Runnable() {\r\n                                    public void run() {\r\n                                        alertDialog.dismiss();\r\n\r\n                                    }\r\n                                }, 500);\r\n                        if (flag_category == true){\r\n                            Toasty.success(getContext(), \"Success\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                        else {\r\n                            Toasty.success(getContext(), \"Fail to upload Category\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    };\r\n    });\r\n}\r\n    }\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/Fragment/FeatureFragment.java	(revision ee82aa560d8cc294dfb15ae3fc27d403222bb62c)
++++ app/src/main/java/Fragment/FeatureFragment.java	(date 1605018231674)
+@@ -5,6 +5,7 @@
+ import android.os.Build;
+ import android.os.Bundle;
+ 
++import androidx.annotation.Nullable;
+ import androidx.annotation.RequiresApi;
+ import androidx.fragment.app.Fragment;
+ import androidx.recyclerview.widget.GridLayoutManager;
+@@ -79,6 +80,7 @@
+         super.onCreate(savedInstanceState);
+     }
+ 
++
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
+@@ -99,13 +101,14 @@
+         {
+             //LOAD CATEGORY
+             recyclerView = rootView.findViewById(R.id.category_recyclerView);
+-            recyclerView.setHasFixedSize(true);
+-
+-            LoadAllCategory();
+-
++            //recyclerView.setHasFixedSize(true);
+             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
++
++            LoadAllCategory();
++
+             adapter = new categoryRVAdapter(getContext(), items);
+             recyclerView.setAdapter(adapter);
++
+         }
+ 
+         //TODO - New courses
+@@ -183,6 +186,7 @@
+                                     citem.setID(jo.getString("_id"));
+                                     Log.v("name", citem.getTitle());
+                                     courseItems2.add(citem);
++                                    topCourseAdapter2.notifyDataSetChanged();
+                                 }
+                                 flag = true;
+                             } catch (JSONException e) {
+@@ -257,6 +261,7 @@
+                                     citem.setID(jo.getString("_id"));
+                                     Log.v("name", citem.getTitle());
+                                     courseItems.add(citem);
++                                    topCourseAdapter.notifyDataSetChanged();
+                                 }
+                                 flag2 = true;
+                             } catch (JSONException e) {
+@@ -332,6 +337,7 @@
+                                         citem.setID(jo.getString("_id"));
+                                         Log.v("name", citem.getTitle());
+                                         courseItems3.add(citem);
++                                        topCourseAdapter3.notifyDataSetChanged();
+                                     }
+                                     flag3 = true;
+                                 } catch (JSONException e) {
+@@ -398,6 +404,7 @@
+                                                                             jo.getString("_id"),
+                                                                             jo.getString("image"));
+                                     items.add(citem);
++                                    adapter.notifyDataSetChanged();
+                                 }
+                                 flag_category = true;
+ 
+Index: app/src/main/java/Activity/HomeScreenActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Activity;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.RequiresApi;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.appcompat.widget.SearchView;\r\nimport androidx.appcompat.widget.Toolbar;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport com.example.tutorial_v1.R;\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\n\r\nimport android.app.AlertDialog;\r\nimport android.content.Intent;\r\nimport android.content.SharedPreferences;\r\nimport android.graphics.Color;\r\nimport android.os.Build;\r\nimport android.os.Bundle;\r\nimport android.preference.PreferenceManager;\r\nimport android.view.MenuItem;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Spinner;\r\nimport android.widget.TextView;\r\n\r\nimport java.util.ArrayList;\r\n\r\nimport Model.UserAccount;\r\nimport Retrofit.IMyService;\r\nimport dmax.dialog.SpotsDialog;\r\nimport retrofit2.Retrofit;\r\nimport Retrofit.RetrofitClient;\r\nimport Fragment.AccountFragment;\r\nimport Fragment.FeatureFragment;\r\n\r\nimport static android.view.View.GONE;\r\n\r\n\r\npublic class HomeScreenActivity extends AppCompatActivity {\r\n\r\n    BottomNavigationView bottomNav;\r\n    Toolbar homeTB;\r\n    SearchView searchView;\r\n    IMyService iMyService;\r\n    AlertDialog alertDialog;\r\n    ArrayAdapter<String> suggestionAdapter;\r\n    SharedPreferences sharedPreferences;\r\n    Spinner spinner;\r\n    ArrayList<String> categoriesName = new ArrayList<String>();\r\n    ArrayList<String> categoriesID = new ArrayList<String>();\r\n    boolean flag=false;\r\n    public  UserAccount userAccount=new UserAccount();\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_home_screen);\r\n\r\n        setUIReference();\r\n        alertDialog= new SpotsDialog.Builder().setContext(this).build();\r\n        Retrofit retrofitClient= RetrofitClient.getInstance();\r\n        iMyService=retrofitClient.create(IMyService.class);\r\n        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());\r\n        userAccount= new UserAccount();\r\n\r\n        //get user information from SharePreferences\r\n        userAccount.setHoten(sharedPreferences.getString(\"name\",\"default\"));\r\n        userAccount.setSdt(sharedPreferences.getString(\"phone\",\"default\"));\r\n        userAccount.setMail(sharedPreferences.getString(\"email\",\"default\"));\r\n        userAccount.setAva(sharedPreferences.getString(\"image\",\"default\"));\r\n        userAccount.setMota(sharedPreferences.getString(\"description\",\"default\"));\r\n        userAccount.setGioitinh(sharedPreferences.getString(\"gender\",\"default\"));\r\n        userAccount.setDiachia(sharedPreferences.getString(\"address\",\"default\"));\r\n        userAccount.setToken(sharedPreferences.getString(\"token\",\"default\"));\r\n        userAccount.setMatkhau(sharedPreferences.getString(\"password\",\"default\"));\r\n\r\n        bottomNav.setOnNavigationItemSelectedListener(bottomNavMethod);\r\n\r\n      /*  getSupportFragmentManager().beginTransaction().replace(R.id.container,new featuredFragment()).commit();\r\n        suggestionAdapter=new ArrayAdapter<>(HomeScreenActivity.this,R.layout.suggestion);*/\r\n        homeTB.setVisibility(GONE);\r\n        Spinner spinner = findViewById(R.id.spinner1);\r\n        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,\r\n                R.array.numbers, android.R.layout.simple_spinner_item);\r\n        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        spinner.setAdapter(adapter);\r\n        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {\r\n            @RequiresApi(api = Build.VERSION_CODES.M)\r\n            @Override\r\n            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {\r\n                String text = parent.getItemAtPosition(position).toString();\r\n                // Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();\r\n                //((TextView) parent.getChildAt(0)).setText(\"\");\r\n                ((TextView) parent.getChildAt(0)).setTextAppearance(android.R.style.TextAppearance_Material_Widget_Toolbar_Title);\r\n                ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);\r\n                ((TextView) parent.getChildAt(0)).setTextSize(21);\r\n\r\n            /*    if(text.equals(\"Khóa học đã tạo\"))\r\n                {\r\n                    homeTB.setTitle(\"Khóa học đã tạo\");\r\n                    getSupportFragmentManager().beginTransaction().replace(R.id.container,new createdCourseFragment()).commit();\r\n                }\r\n                if(text.equals(\"Khóa đã tham gia\"))\r\n                {\r\n                    homeTB.setTitle(\"Đã tham gia\");\r\n                    getSupportFragmentManager().beginTransaction().replace(R.id.container,new mycoursesFragment()).commit();\r\n                }*/\r\n            }\r\n            @Override\r\n            public void onNothingSelected(AdapterView<?> parent) {\r\n\r\n            }\r\n        });\r\n    }\r\n\r\n    BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new BottomNavigationView.OnNavigationItemSelectedListener() {\r\n        @Override\r\n        public boolean onNavigationItemSelected(@NonNull MenuItem item) {\r\n            Fragment fragment =new Fragment();\r\n\r\n            switch (item.getItemId())\r\n            {\r\n\r\n                case R.id.feature:\r\n                    homeTB.setVisibility(GONE);\r\n                    searchView.setVisibility(GONE);\r\n                    fragment=new FeatureFragment();\r\n                    break;\r\n                 /*\r\n                case R.id.search_frag:\r\n                    homeTB.setVisibility(View.VISIBLE);\r\n                    fragment=new searchFragment();\r\n\r\n                    spinner.setVisibility(GONE);\r\n                    homeTB.setTitle(\"\");\r\n                    homeTB.setVisibility(GONE);\r\n                    homeTB.setTitleTextColor(-1);\r\n                    break;\r\n                case R.id.my_course_frag:\r\n                    homeTB.setVisibility(View.VISIBLE);\r\n                    fragment=new mycoursesFragment();\r\n\r\n                    homeTB.setTitle(\"Đã tham gia\");\r\n                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(HomeActivity.this,\r\n                            R.array.numbers, android.R.layout.simple_spinner_item);\r\n                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n                    spinner.setAdapter(adapter);\r\n\r\n                    searchView.setVisibility(GONE);\r\n                    homeTB.setTitleTextColor(-1);\r\n                    spinner.setVisibility(View.VISIBLE);\r\n                    break;\r\n                case R.id.cart_frag:\r\n                    homeTB.setVisibility(View.VISIBLE);\r\n                    fragment=new cartFragment();\r\n                    homeTB.setTitle(\"Cart\");\r\n                    spinner.setVisibility(GONE);\r\n                    searchView.setVisibility(GONE);\r\n                    homeTB.setTitleTextColor(-1);\r\n                    break;*/\r\n                case R.id.account_frag:\r\n                    homeTB.setVisibility(View.VISIBLE);\r\n                    // Toast.makeText(HomeActivity.this, userAccount.getAva(), Toast.LENGTH_SHORT).show();\r\n                    fragment=new AccountFragment(userAccount);\r\n                    homeTB.setTitle(\"Tài Khoản\");\r\n                    searchView.setVisibility(GONE);\r\n                    spinner.setVisibility(GONE);\r\n                    homeTB.setTitleTextColor(-1);\r\n                    break;\r\n            }\r\n            getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();\r\n            return true;\r\n        }\r\n    };\r\n\r\n    private void setUIReference() {\r\n        bottomNav=findViewById(R.id.bottomNav);\r\n        homeTB=findViewById(R.id.homeTB);\r\n        searchView=findViewById(R.id.searchView);\r\n        spinner=findViewById(R.id.spinner1);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/Activity/HomeScreenActivity.java	(revision ee82aa560d8cc294dfb15ae3fc27d403222bb62c)
++++ app/src/main/java/Activity/HomeScreenActivity.java	(date 1605114799349)
+@@ -33,6 +33,7 @@
+ import Retrofit.RetrofitClient;
+ import Fragment.AccountFragment;
+ import Fragment.FeatureFragment;
++import Fragment.SearchFragment;
+ 
+ import static android.view.View.GONE;
+ 
+@@ -128,16 +129,18 @@
+                     searchView.setVisibility(GONE);
+                     fragment=new FeatureFragment();
+                     break;
+-                 /*
++
+                 case R.id.search_frag:
+                     homeTB.setVisibility(View.VISIBLE);
+-                    fragment=new searchFragment();
++                    searchView.setVisibility(View.VISIBLE);
++                    fragment=new SearchFragment();
+ 
+                     spinner.setVisibility(GONE);
+                     homeTB.setTitle("");
+-                    homeTB.setVisibility(GONE);
++                    //homeTB.setVisibility(GONE);
+                     homeTB.setTitleTextColor(-1);
+                     break;
++                    /*
+                 case R.id.my_course_frag:
+                     homeTB.setVisibility(View.VISIBLE);
+                     fragment=new mycoursesFragment();
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Tutorial_v1</string>\r\n    <string name=\"title_activity_home\">HomeActivity</string>\r\n    <string name=\"prompt_email\">Email</string>\r\n    <string name=\"prompt_password\">Password</string>\r\n    <string name=\"action_sign_in\">Sign in or register</string>\r\n    <string name=\"action_sign_in_short\">Sign in</string>\r\n    <string name=\"welcome\">\"Welcome !\"</string>\r\n    <string name=\"invalid_username\">Not a valid username</string>\r\n    <string name=\"invalid_password\">Password must be >5 characters</string>\r\n    <string name=\"login_failed\">\"Login failed\"</string>\r\n    <string name=\"text_underline\"><u>Forgot Password?</u></string>\r\n\r\n\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string-array name=\"numbers\">\r\n\r\n        <item> Khóa đã tham gia</item>\r\n        <item>Khóa học đã tạo</item>\r\n\r\n    </string-array>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision ee82aa560d8cc294dfb15ae3fc27d403222bb62c)
++++ app/src/main/res/values/strings.xml	(date 1605068692281)
+@@ -20,4 +20,93 @@
+         <item>Khóa học đã tạo</item>
+ 
+     </string-array>
++    <string name="large_text">
++        "Material is the metaphor.\n\n"
++
++        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
++        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
++        "technologically advanced and open to imagination and magic.\n"
++        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
++        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
++        "flexibility of the material creates new affordances that supercede those in the physical "
++        "world, without breaking the rules of physics.\n"
++        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
++        "interact, and exist in space and in relation to each other. Realistic lighting shows "
++        "seams, divides space, and indicates moving parts.\n\n"
++
++        "Bold, graphic, intentional.\n\n"
++
++        "The foundational elements of print based design typography, grids, space, scale, color, "
++        "and use of imagery guide visual treatments. These elements do far more than please the "
++        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
++        "imagery, large scale typography, and intentional white space create a bold and graphic "
++        "interface that immerse the user in the experience.\n"
++        "An emphasis on user actions makes core functionality immediately apparent and provides "
++        "waypoints for the user.\n\n"
++
++        "Motion provides meaning.\n\n"
++
++        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
++        "inflection points that initiate motion, transforming the whole design.\n"
++        "All action takes place in a single environment. Objects are presented to the user without "
++        "breaking the continuity of experience even as they transform and reorganize.\n"
++        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
++        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
++
++        "3D world.\n\n"
++
++        "The material environment is a 3D space, which means all objects have x, y, and z "
++        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
++        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
++        "position along the z-axis and has a standard 1dp thickness.\n"
++        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
++        "emulated by manipulating the y-axis.\n\n"
++
++        "Light and shadow.\n\n"
++
++        "Within the material environment, virtual lights illuminate the scene. Key lights create "
++        "directional shadows, while ambient light creates soft shadows from all angles.\n"
++        "Shadows in the material environment are cast by these two light sources. In Android "
++        "development, shadows occur when light sources are blocked by sheets of material at "
++        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
++        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
++
++        "Resting elevation.\n\n"
++
++        "All material objects, regardless of size, have a resting elevation, or default elevation "
++        "that does not change. If an object changes elevation, it should return to its resting "
++        "elevation as soon as possible.\n\n"
++
++        "Component elevations.\n\n"
++
++        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
++        "does not vary from 6dp in one app to 16dp in another app).\n"
++        "Components may have different resting elevations across platforms, depending on the depth "
++        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
++
++        "Responsive elevation and dynamic elevation offsets.\n\n"
++
++        "Some component types have responsive elevation, meaning they change elevation in response "
++        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
++        "changes are consistently implemented using dynamic elevation offsets.\n"
++        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
++        "to the component’s resting state. They ensure that elevation changes are consistent "
++        "across actions and component types. For example, all components that lift on press have "
++        "the same elevation change relative to their resting elevation.\n"
++        "Once the input event is completed or cancelled, the component will return to its resting "
++        "elevation.\n\n"
++
++        "Avoiding elevation interference.\n\n"
++
++        "Components with responsive elevations may encounter other components as they move between "
++        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
++        "through other material, components avoid interfering with one another any number of ways, "
++        "whether on a per component basis or using the entire app layout.\n"
++        "On a component level, components can move or be removed before they cause interference. "
++        "For example, a floating action button (FAB) can disappear or move off screen before a "
++        "user picks up a card, or it can move if a snackbar appears.\n"
++        "On the layout level, design your app layout to minimize opportunities for interference. "
++        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
++        "when a user tries to pick up one of cards.\n\n"
++    </string>
+ </resources>
+\ No newline at end of file

@@ -1,0 +1,133 @@
+Index: app/src/main/java/Adapter/topCourseAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Adapter;\r\n\r\nimport android.content.Context;\r\nimport android.graphics.Paint;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\nimport android.widget.RatingBar;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.squareup.picasso.MemoryPolicy;\r\nimport com.squareup.picasso.NetworkPolicy;\r\nimport com.squareup.picasso.Picasso;\r\n\r\nimport java.text.DecimalFormat;\r\nimport java.text.NumberFormat;\r\nimport java.util.ArrayList;\r\n\r\nimport com.example.tutorial_v1.R;\r\n\r\nimport Model.courseItem;\r\n\r\npublic class topCourseAdapter extends RecyclerView.Adapter<topCourseAdapter.CustomViewHolder>{\r\n    private final Context context;\r\n    private final ArrayList<courseItem> courseItems;\r\n    String url = \"http://149.28.24.98:9000/upload/course_image/\";\r\n\r\n    public topCourseAdapter(Context context, ArrayList<courseItem> courseItems) {\r\n        this.context = context;\r\n        this.courseItems = courseItems;\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public topCourseAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        LayoutInflater inflater = LayoutInflater.from(context);\r\n        View view = inflater.inflate(R.layout.top_courses_item, parent, false);\r\n\r\n        return new CustomViewHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull topCourseAdapter.CustomViewHolder holder, int position) {\r\n        courseItem item = courseItems.get(position);\r\n        holder.titleText.setText(item.getTitle());\r\n        Picasso.get().load(url+item.getUrl()).into(holder.imageView);\r\n        holder.ratingBar.setRating(item.getRating());\r\n        String strVote = NumberFormat.getInstance().format(item.getTotalVote());\r\n        String strDiscount = NumberFormat.getInstance().format(item.getDiscount());\r\n        holder.totalVote.setText(strVote);\r\n\r\n        float fee = Float.parseFloat(item.getFee());\r\n        if (fee != 0){\r\n            float finalFee = fee - (fee *item.getDiscount()*(float) 0.01);\r\n            if (finalFee != 0){\r\n                NumberFormat formatter = new DecimalFormat(\"#,###VNĐ\");\r\n                String formattedNumber = formatter.format(finalFee);\r\n                holder.feeText.setText(formattedNumber);\r\n            } else {\r\n                holder.feeText.setText(\"Free\");\r\n            }\r\n\r\n        } else {\r\n            holder.feeText.setText(\"Free\");\r\n        }\r\n\r\n        if (item.getDiscount() == 0){\r\n            holder.discountText.setText(\"\");\r\n        } else\r\n        holder.discountText.setText(\"-\" + strDiscount + \"%\");\r\n    }\r\n\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return courseItems.size();\r\n    }\r\n\r\n    public static class CustomViewHolder extends RecyclerView.ViewHolder {\r\n        private final ImageView imageView;\r\n        private final TextView titleText;\r\n        private final RatingBar ratingBar;\r\n        private final TextView totalVote;\r\n        private final TextView feeText;\r\n        private final TextView discountText;\r\n\r\n        public CustomViewHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n\r\n            imageView = (itemView).findViewById(R.id.top_course_image);\r\n            titleText = (itemView).findViewById(R.id.top_course_title);\r\n            ratingBar = (itemView).findViewById(R.id.top_course_rating);\r\n            totalVote = (itemView).findViewById(R.id.totalVote);\r\n            feeText = (itemView).findViewById(R.id.top_cousers_fee);\r\n            discountText = (itemView).findViewById(R.id.top_cousers_discount);\r\n        }\r\n    }\r\n\r\n    //TO - DO COURSE LAYOUT\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/Adapter/topCourseAdapter.java	(revision 55a128a2b51847c0d62046b2ce53f166b0b3bf1f)
++++ app/src/main/java/Adapter/topCourseAdapter.java	(date 1605196653637)
+@@ -2,8 +2,10 @@
+ 
+ import android.content.Context;
+ import android.graphics.Paint;
++import android.media.Ringtone;
+ import android.view.LayoutInflater;
+ import android.view.View;
++import android.view.View.OnClickListener;
+ import android.view.ViewGroup;
+ import android.widget.ImageView;
+ import android.widget.RatingBar;
+@@ -27,6 +29,7 @@
+ public class topCourseAdapter extends RecyclerView.Adapter<topCourseAdapter.CustomViewHolder>{
+     private final Context context;
+     private final ArrayList<courseItem> courseItems;
++
+     String url = "http://149.28.24.98:9000/upload/course_image/";
+ 
+     public topCourseAdapter(Context context, ArrayList<courseItem> courseItems) {
+@@ -39,7 +42,6 @@
+     public topCourseAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+         LayoutInflater inflater = LayoutInflater.from(context);
+         View view = inflater.inflate(R.layout.top_courses_item, parent, false);
+-
+         return new CustomViewHolder(view);
+     }
+ 
+Index: app/src/main/res/layout/activity_course_detail.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <ScrollView\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:orientation=\"vertical\">\r\n\r\n            <FrameLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"230dp\">\r\n\r\n                <ImageView\r\n                    android:id=\"@+id/courseDetail_image\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:background=\"@drawable/image_slider_2\"\r\n                    android:scaleType=\"centerCrop\"\r\n                    />\r\n                <GridLayout\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:background=\"#AA000000\">\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/courseDetail_name\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_row=\"0\"\r\n                        android:layout_column=\"0\"\r\n                        android:paddingTop=\"5dp\"\r\n                        android:layout_marginLeft=\"10dp\"\r\n                        android:fontFamily=\"@font/roboto_bold\"\r\n                        android:text=\"Title\"\r\n                        android:textColor=\"@color/white\"\r\n                        android:textSize=\"40dp\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/courseDetail_goal\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:paddingTop=\"5dp\"\r\n                        android:layout_marginLeft=\"10dp\"\r\n                        android:layout_row=\"1\"\r\n                        android:layout_column=\"0\"\r\n                        android:fontFamily=\"@font/roboto\"\r\n                        android:text=\"Goal\"\r\n                        android:textColor=\"@color/white\"\r\n                        android:textSize=\"30dp\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/courseDetail_ranking\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_row=\"2\"\r\n                        android:layout_column=\"0\"\r\n                        android:fontFamily=\"@font/roboto\"\r\n                        android:paddingTop=\"5dp\"\r\n                        android:layout_marginLeft=\"10dp\"\r\n                        android:text=\"Ranking\"\r\n                        android:textColor=\"@color/white\"\r\n                        android:textSize=\"15dp\" />\r\n\r\n                    <TextView\r\n                        android:id=\"@+id/courseDetail_create_at\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:layout_row=\"2\"\r\n                        android:layout_column=\"1\"\r\n                        android:fontFamily=\"@font/roboto\"\r\n                        android:paddingLeft=\"5dp\"\r\n                        android:paddingTop=\"5dp\"\r\n                        android:text=\"Update\"\r\n                        android:textColor=\"@color/white\"\r\n                        android:textSize=\"15dp\" />\r\n                </GridLayout>\r\n            </FrameLayout>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\">\r\n\r\n                <TextView\r\n                    android:id=\"@+id/courseDetail_price\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginLeft=\"10dp\"\r\n                    android:layout_marginTop=\"10dp\"\r\n                    android:text=\"200.000VND\"\r\n                    android:fontFamily=\"@font/roboto_bold\"\r\n                    android:textSize=\"30sp\"\r\n                    android:gravity=\"center_horizontal|top\"\r\n                    />\r\n\r\n                <TextView\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginLeft=\"10dp\"\r\n                    android:layout_marginTop=\"10dp\"\r\n                    android:text=\"220.000 đ\"\r\n                    android:id=\"@+id/top_cousers_discount\"\r\n                    android:textSize=\"15dp\"\r\n                    android:textColor=\"#792727\"\r\n                    android:gravity=\"center_horizontal|top\"\r\n                    />\r\n            </LinearLayout>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:orientation=\"vertical\"\r\n                android:padding=\"5dp\">\r\n\r\n                <androidx.appcompat.widget.AppCompatButton\r\n                    android:id=\"@+id/courseDetail_joinBtn\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_gravity=\"center\"\r\n                    android:layout_margin=\"5dp\"\r\n                    android:background=\"@drawable/rectangle_corner_button\"\r\n                    android:text=\"Join now\"\r\n                    android:textSize=\"16dp\"\r\n                    android:textColor=\"#fff\"\r\n                    />\r\n\r\n                <androidx.appcompat.widget.AppCompatButton\r\n                    android:id=\"@+id/courseDetail_commentBtn\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_gravity=\"center\"\r\n                    android:layout_margin=\"5dp\"\r\n                    android:background=\"@drawable/rectangle_corner_whitebg\"\r\n                    android:text=\"Feedback\"\r\n                    android:textSize=\"16dp\"\r\n                    android:textColor=\"@color/main_blue\"\r\n                    />\r\n            </LinearLayout>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:orientation=\"vertical\"\r\n                android:layout_margin=\"10dp\"\r\n                android:background=\"@drawable/rectangle_corner_whitebg\">\r\n\r\n                <TextView\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginTop=\"5dp\"\r\n                    android:text=\"Description\"\r\n                    android:textSize=\"20sp\"\r\n                    android:fontFamily=\"@font/roboto_bold\"\r\n                    android:textColor=\"#8A000000\"\r\n                    android:gravity=\"center_horizontal|top\"\r\n                    />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/courseDetail_description\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginTop=\"5dp\"\r\n                    android:text=\"@string/description_demo\"\r\n                    android:textSize=\"17sp\"\r\n                    android:fontFamily=\"@font/roboto\"\r\n                    android:textColor=\"#000000\"\r\n                    android:gravity=\"left\"\r\n                    />\r\n            </LinearLayout>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:orientation=\"vertical\"\r\n                android:layout_margin=\"10dp\"\r\n                android:background=\"@drawable/rectangle_corner_whitebg\">\r\n\r\n                <TextView\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginTop=\"5dp\"\r\n                    android:text=\"Related Course\"\r\n                    android:textSize=\"22sp\"\r\n                    android:fontFamily=\"@font/roboto_bold\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:gravity=\"center_horizontal|top\"\r\n                    />\r\n\r\n                <androidx.recyclerview.widget.RecyclerView\r\n                    android:layout_marginTop=\"10dp\"\r\n                    android:id=\"@+id/courseDetail_related_coursesRecycler\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    />\r\n\r\n            </LinearLayout>\r\n\r\n            <LinearLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:orientation=\"vertical\"\r\n                android:layout_margin=\"10dp\"\r\n                android:background=\"@drawable/rectangle_corner_whitebg\">\r\n\r\n                <TextView\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    android:layout_marginTop=\"5dp\"\r\n                    android:text=\"Feedback of student\"\r\n                    android:textSize=\"22sp\"\r\n                    android:fontFamily=\"@font/roboto_bold\"\r\n                    android:textColor=\"@color/black\"\r\n                    android:gravity=\"center_horizontal|top\"\r\n                    />\r\n\r\n                <androidx.recyclerview.widget.RecyclerView\r\n                    android:layout_marginTop=\"10dp\"\r\n                    android:id=\"@+id/courseDetail_commentRecycler\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_marginLeft=\"5dp\"\r\n                    />\r\n\r\n            </LinearLayout>\r\n\r\n        </LinearLayout>\r\n    </ScrollView>\r\n\r\n\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_course_detail.xml	(revision 55a128a2b51847c0d62046b2ce53f166b0b3bf1f)
++++ app/src/main/res/layout/activity_course_detail.xml	(date 1605195104941)
+@@ -36,6 +36,7 @@
+                         android:layout_row="0"
+                         android:layout_column="0"
+                         android:paddingTop="5dp"
++                        android:layout_marginTop="10dp"
+                         android:layout_marginLeft="10dp"
+                         android:fontFamily="@font/roboto_bold"
+                         android:text="Title"
+Index: app/src/main/java/Activity/CourseDetailActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Activity;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\n\r\npublic class CourseDetailActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/Activity/CourseDetailActivity.java	(revision 55a128a2b51847c0d62046b2ce53f166b0b3bf1f)
++++ app/src/main/java/Activity/CourseDetailActivity.java	(date 1605194977853)
+@@ -1,14 +1,66 @@
+ package Activity;
+ 
+-import androidx.appcompat.app.AppCompatActivity;
+-
++import android.app.AlertDialog;
++import android.content.Context;
++import android.os.Build;
+ import android.os.Bundle;
+ 
++import androidx.annotation.Nullable;
++import androidx.annotation.RequiresApi;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.recyclerview.widget.GridLayoutManager;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++
++import android.os.Handler;
++import android.util.Log;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.Button;
++import android.widget.ImageView;
++import android.widget.LinearLayout;
++import android.widget.Toast;
++
++import com.squareup.picasso.MemoryPolicy;
++import com.squareup.picasso.NetworkPolicy;
++import com.squareup.picasso.Picasso;
++import com.example.tutorial_v1.R;
++
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import Adapter.topCourseAdapter;
++import Model.courseItem;
++import dmax.dialog.SpotsDialog;
++import es.dmoral.toasty.Toasty;
++import io.reactivex.Observer;
++import io.reactivex.android.schedulers.AndroidSchedulers;
++import io.reactivex.annotations.NonNull;
++import io.reactivex.disposables.Disposable;
++import io.reactivex.schedulers.Schedulers;
++import retrofit2.Retrofit;
++
++import Retrofit.*;
++
+ public class CourseDetailActivity extends AppCompatActivity {
+ 
++    IMyService iMyService;
++    AlertDialog alertDialog;
++    ImageView imageView;
++    String courseName, courseGoal, courseRanking, courseUpdate, coursePrice, courseDescription, courseDiscount;
++    Button joinBtn, commentBtn;
++    RecyclerView relatedCoursesRecyclerView, commentsRecyclerView;
++    ArrayList<courseItem> courseItems = new ArrayList<>();
++    topCourseAdapter courseAdapter;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-
++        setContentView(R.layout.activity_course_detail);
+     }
+ }
+\ No newline at end of file
